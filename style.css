@@ -1,0 +1,45 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: sans-serif;
+  background-color: aliceblue;
+}
+
+#arm {
+  width: 100px;
+  height: auto;
+  position: relative;
+  transform-origin: center 100px;
+  display: block;
+  margin: 0 auto;
+}
+
+table {
+  border: 1px solid;
+}
+
+th,
+td {
+  padding-left: 3em;
+  padding-right: 3em;
+}
+
+#table {
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 150px;
+}
+
+#table2 {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 200px;
+}

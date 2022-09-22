@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercise 3</title>
+  </head>
+  <body>
+    <h2>Exercise 3</h2>
+    <ul id="list"></ul>
+    <form>
+      <input id="name" />
+      <button id="add">Add name</button>
+      <button id="del-first">Remove first</button>
+      <button id="del-last">Remove last</button>
+    </form>
+
+    <script>
+      const names = ["John", "Lone", "Carlos"];
+
+      function createList() {
+        document.getElementById("list").innerHTML = names
+          .map((name) => `<li>${name}</li>`)
+          .join("");
+      }
+      createList();
+
+      document.getElementById("add").onclick = (e) => {
+        e.preventDefault();
+        const addedName = document.getElementById("name").value;
+        names.push(addedName);
+        createList();
+      };
+
+      document.getElementById("del-first").onlick = (e) => {
+        e.preventDefault();
+        names.shift();
+        createList();
+      };
+
+      document.getElementById("del-last").onclick = (e) => {
+        e.preventDefault();
+        names.pop();
+        createList();
+      };
+    </script>
+  </body>
+</html>

@@ -1,81 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-<body>
-<div class="container" style="padding:1em;font-family: sans-serif">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div id="div1">
+      <table id="table">
+        <th>
+          <a href="ex1.html">Exercise 1</a>
+        </th>
+        <th>
+          <a href="ex2.html">Exercise 2</a>
+        </th>
+        <th>
+          <a href="ex3.html">Exercise 3</a>
+        </th>
+        <th>
+          <a href="ex4.html">Exercise 4</a>
+        </th>
+      </table>
+      <img src="static/arm.png" id="arm" alt="arm png" />
+      <table id="table2">
+        <th>
+          <a href="week2-ex1.html">Exercise 1</a>
+        </th>
+        <th>
+          <a href="week2-ex2.html">Exercise 2</a>
+        </th>
+        <th>
+          <a href="week2-ex3.html">Exercise 3</a>
+        </th>
+      </table>
+    </div>
 
-    <button id="initialize-btn">Load Data</button>
-    <ul id="ul1"></ul>
+    <script>
+      var arm = document.getElementById("arm"),
+        pointerBox = arm.getBoundingClientRect(),
+        centerPoint = window.getComputedStyle(arm).transformOrigin,
+        centers = centerPoint.split(" "),
+        centerY = pointerBox.top + parseInt(centers[1]) - window.pageYOffset,
+        centerX = pointerBox.left + parseInt(centers[0]) - window.pageXOffset;
 
-    <form>
-        <div><input id="name-input" placeholder="Enter new name here"></div>
-        <div><span style="display: inline-block; width: 20em;margin-top: 10px;">Manipulate the individual DOM elements </span>
-            <button id="btn-a1">Add Name</button>
-            <button id="btn-a2">Remove First</button>
-            <button id="btn-a3">Remove Last</button>
-        </div>
-        <div style="margin-top: 1em;"><span style="display: inline-block; width: 20em;">Manipulate the Array and re-render the UL</span>
-            <button id="btn-b1">Add Name</button>
-            <button id="btn-b2">Remove First</button>
-            <button id="btn-b3">Remove Last</button>
-        </div>
-    </form>
-</div>
-
-<script>
-    //Will eventually (day 4) come from a server-API
-    const names = ["Lars", "Peter", "Jan", "Lise", "Janne"]
-    function makeList() {
-        const lis = names.map(n => `<li>${n}</li>`).join("")
-        document.getElementById("ul1").innerHTML = lis
-    }
-    document.getElementById("initialize-btn").onclick = ()=>makeList()
-
-
-    /****************************************************************************/
-    /*        Strategy where we are manipulating individual DOM-Elements        */
-    /****************************************************************************/
-
-
-    document.getElementById("btn-a1").onclick = (evt) => {
-     //Insert code block 1
-    }
-
-    document.getElementById("btn-a2").onclick = (evt) => {
-        //Insert code block 2
-    }
-    document.getElementById("btn-a3").onclick = (evt) => {
-        //Insert code block 3
-    }
-
-    /****************************************************************************/
-    /* Strategy where we are manipulating the data, and then re-render the HTML */
-    /****************************************************************************/
-
-    document.getElementById("btn-b1").onclick = (evt) => {
-        //Insert code block 4
-    }
-
-    document.getElementById("btn-b2").onclick = (evt) => {
-        //Insert code block 5
-    }
-
-    document.getElementById("btn-b3").onclick = (evt) => {
-        //Insert code block 6
-    }
-    //Utility function you can use to escape "untrusted" data inputs
-    //Ref: https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html
-    function encode(str) {
-        str = str.replace(/&/g, "&amp;");
-        str = str.replace(/>/g, "&gt;");
-        str = str.replace(/</g, "&lt;");
-        str = str.replace(/"/g, "&quot;");
-        str = str.replace(/'/g, "&#039;");
-        return str;
-    }
-</script>
-
-</body>
+      document.addEventListener("mousemove", function (e) {
+        var radians = Math.atan2(e.clientX - centerX, e.clientY - centerY);
+        var degree = radians * (180 / Math.PI) * -1 + 180 + 40;
+        arm.style.transform = "rotate(" + degree + "deg)";
+      });
+    </script>
+  </body>
+  <footer>
+    <a href="https://github.com/tLangelo">
+      <img src="static/github.png" width="100" height="100" />
+    </a>
+  </footer>
 </html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <table class="table">
+      <thead>
+        <tr>
+          <th id="h-id">ID</th>
+          <th id="h-year">Year</th>
+          <th id="h-make">Make</th>
+          <th id="h-model">Model</th>
+          <th id="h-price">Price</th>
+        </tr>
+      </thead>
+      <tbody id="tbody"></tbody>
+    </table>
+
+    <div id="div1">
+      <label for="filter-price">Price</label>
+      <input id="filter-price" />
+      <button id="filter-price-btn">Price less than</button>
+      <button id="filter-clear-btn">Clear filter</button>
+    </div>
+
+    <script>
+      const cars = [
+        { id: 1, year: 1997, make: "Ford", model: "E350", price: 3000 },
+        { id: 2, year: 1999, make: "Chevy", model: "Venture", price: 4900 },
+        { id: 3, year: 2000, make: "Chevy", model: "Venture", price: 5000 },
+        {
+          id: 4,
+          year: 1996,
+          make: "Jeep",
+          model: "Grand Cherokee",
+          price: 4799,
+        },
+        { id: 5, year: 2005, make: "Volvo", model: "V70", price: 44799 },
+      ];
+
+      function makeRows(carsToAdd) {
+        const rows = carsToAdd
+          .map(
+            (car) => `
+            <tr>
+              <td>${car.id}</td>
+              <td>${car.year}</td>
+              <td>${car.make}</td>
+              <td>${car.model}</td>
+              <td>${car.price}</td>
+            </tr>
+          `
+          )
+          .join("\n");
+        document.getElementById("tbody").innerHTML = rows;
+      }
+      makeRows(cars);
+
+      document.getElementById("filter-price-btn").onclick = () => {
+        const price = document.getElementById("filter-price").value;
+        const filteredCars = cars.filter((car) => car.price < price);
+        makeRows(filteredCars);
+      };
+
+      document.getElementById("filter-clear-btn").onclick = function () {
+        makeRows(cars);
+      };
+
+      let sortOrders = 1;
+      document.getElementById("h-make").onclick = function () {
+        const sortedCars = cars.sort((a, b) => {
+          let sortResult = 0;
+          if (a.make < b.make) sortResult = -1;
+          if (a.make > b.make) sortResult = 1;
+          sortResult *= sortOrders;
+          return sortResult;
+        });
+        sortOrders *= -1;
+        makeRows(sortedCars);
+      };
+
+      let sortPrice = 1;
+      document.getElementById("h-price").onclick = function () {
+        const sortedCars = cars.sort((a, b) => {
+          let sortResult = 0;
+          if (a.price < b.price) sortResult = -1;
+          if (a.price > b.price) sortResult = 1;
+          sortResult *= sortOrders;
+          return sortResult;
+        });
+        sortOrders *= -1;
+        makeRows(sortedCars);
+      };
+
+      let sortId = 1;
+      document.getElementById("h-id").onclick = function () {
+        const sortedCars = cars.sort((a, b) => {
+          let sortResult = 0;
+          if (a.id < b.id) sortResult = -1;
+          if (a.id > b.id) sortResult = 1;
+          sortResult *= sortOrders;
+          return sortResult;
+        });
+        sortOrders *= -1;
+        makeRows(sortedCars);
+      };
+    </script>
+  </body>
+</html>

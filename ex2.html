@@ -1,42 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercise 2</title>
     <style>
-        .my-div {width: 25px; height: 25px;background-color:red; margin:1px;}
-      </style>     
-</head>
-<body>
-    <div id="outer" onclick="targetId(this.id)">
-        <div class="my-div" id="div1" ></div>
-        <div class="my-div" id="div2" ></div>
-        <div class="my-div" id="div3" ></div>
-        <div class="my-div" id="div4" ></div>
-        <div class="my-div" id="div5" ></div>
-        <div class="my-div" id="div6" ></div>
-        <div class="my-div" id="div7" ></div>
-        <div class="my-div" id="div8" ></div>
-        <div class="my-div" id="div9" ></div>
-        <div class="my-div" id="div10"></div>
+      .my-div {
+        width: 25px;
+        height: 25px;
+        background-color: red;
+        margin: 1px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Exercise 2</h2>
+    <div id="outer">
+      <div class="my-div" id="div1"></div>
+      <div class="my-div" id="div2"></div>
+      <div class="my-div" id="div3"></div>
+      <div class="my-div" id="div4"></div>
+      <div class="my-div" id="div5"></div>
+      <div class="my-div" id="div6"></div>
+      <div class="my-div" id="div7"></div>
+      <div class="my-div" id="div8"></div>
+      <div class="my-div" id="div9"></div>
+      <div class="my-div" id="div10"></div>
     </div>
-    
-
-
-<script>
-    function printId(id){
-        console.log("Hi from " + id);
-    }
-
-    function targetId(e){
-        console.log("e = "+e)
-        const target = e.target.id
-        console.log("target = "+target)
-    }
-
-</script>
-
-</body>
+    <p id="id-text"></p>
+    <script>
+      document.getElementById("outer").onclick = (e) => {
+        const id = e.target.id;
+        console.log("Hi from id: " + id);
+        document.getElementById("id-text").innerText = id;
+      };
+    </script>
+  </body>
 </html>
